@@ -18,7 +18,7 @@ import qtensor
 from qtensor.contraction_backends import TorchBackend
 
 N = 10
-qubits = range(L)
+qubits = range(N)
 trash_qubits = range(8)
 useful_qubits = [q for q in qubits if q not in trash_qubits]
 
