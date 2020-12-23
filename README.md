@@ -34,4 +34,10 @@ def loss(params):
     return - prob_sum
 ```
 
+
+### TODO:
+
+1. Add YPhase gate to `TorchFactory`
+2. Add posssibility to specify gate factory for qiskit importer
+3. Correct signotures of circut generating functions
             
