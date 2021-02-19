@@ -52,7 +52,7 @@ After optimizaiton we hope to get psi to be:
 
 Now we want to get the compressed state.
 
-There are two options:
+There are two options(not equivalent):
 
 1. Calculate density matrix from the psi, `rho = |psi><psi|`. Then trace thrash quibts to get reduced density matrix. `rho_c = \sum_{thrash} <thrash|psi><psi|thrash>`.
 2. Sum *the state* over the thrash qubits. The compressed state is `phi` equals `phi_ij = \sum_{kl} psi_{ijkl}`. Effectively this means that to get amplitude `xx` of `phi`, you have to sum over `xx00, xx01, xx10, xx11`. Then from `phi` you can get `rho_c = |phi><phi|`.
