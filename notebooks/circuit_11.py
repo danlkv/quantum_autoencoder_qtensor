@@ -28,3 +28,30 @@ def circuit_11(layers, composer, parameters=None):
             composer.apply_gate(ops.cX, q[l+1], q[l])
 
     return composer.circuit
+
+
+def get_circ_and_peo(parameters,
+    N=8, layers=3, fixed=3,
+    ordering_algo='rgreedy_0.02_10',
+    backend='torch'
+    ):
+    """
+    Args:
+        N: number of qubits
+        layers: number of layers in autoencoder circuit
+        fixed: nubber of thrash qubits
+        ordering_algo (str): ordering algo to use
+    """
+    import qtensor
+    opt = qtensor.toolbox.get_ordering_algo('rgreedy_0.02_10')
+
+    if backend=='torch':
+        composer = qtensor.TorchBuilder(n_qubits=N)
+    else:
+        composer = qtensor.QtreeBuilder(n_qubits=N)
+
+    circ = circuit_11(layers=layers, composer=composer, parameters=parameters)
+    tn = qtensor.optimisation.TensorNet.QtreeTensorNet.from_qtree_gates(circ)
+    tn.set_free_qubits(range(fixed, N))
+    peo, _ = opt.optimize(tn)
+    return peo, circ
