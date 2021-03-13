@@ -43,7 +43,7 @@ def get_circ_and_peo(parameters,
         ordering_algo (str): ordering algo to use
     """
     import qtensor
-    opt = qtensor.toolbox.get_ordering_algo('rgreedy_0.02_10')
+    opt = qtensor.toolbox.get_ordering_algo(ordering_algo)
 
     if backend=='torch':
         composer = qtensor.TorchBuilder(n_qubits=N)
